@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌿 Clover Collab
+# 🌿 Clover
 
 **Smarter Supplier Collaboration. Better Data. Powered by AI.**
 
