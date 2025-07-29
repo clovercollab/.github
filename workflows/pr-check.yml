@@ -1,0 +1,20 @@
+name: PR Ticket Validation
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR Body for AB#1234 format
+        run: |
+          BODY="${{ github.event.pull_request.body }}"
+          TITLE="${{ github.event.pull_request.title }}"
+          if [[ "$BODY" =~ AB#[0-9]+ || "$TITLE" =~ AB#[0-9]+ ]]; then
+            echo "✅ Found ticket reference."
+          else
+            echo "❌ Missing ticket reference in PR (AB#1234 expected)."
+            exit 1
+          fi
