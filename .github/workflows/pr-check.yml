@@ -7,14 +7,14 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check PR Body for AB#1234 format
+      - name: Validate PR title/body
         env:
           TITLE: ${{ github.event.pull_request.title }}
           BODY: ${{ github.event.pull_request.body }}
         run: |
-          if [[ "$BODY" =~ AB#[0-9]+ || "$TITLE" =~ AB#[0-9]+ ]]; then
+          if [[ "$TITLE" =~ AB#[0-9]+ || "$BODY" =~ AB#[0-9]+ ]]; then
             echo "✅ Found ticket reference."
           else
-            echo "❌ Missing ticket reference in PR (AB#1234 expected)."
+            echo "❌ Missing AB#1234 ticket reference"
             exit 1
           fi
