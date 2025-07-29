@@ -13,7 +13,7 @@ jobs:
           TITLE: ${{ github.event.pull_request.title }}
           BODY: ${{ github.event.pull_request.body }}
         run: |
-          if [[ "$TITLE" =~ AB#[0-9]+ || "$BODY" =~ AB#[0-9]+ ]]; then
+          if echo "$TITLE $BODY" | grep -Eq 'AB#[0-9]+'; then
             echo "✅ Found ticket reference."
           else
             echo "❌ Missing AB#1234 ticket reference"
